@@ -53,21 +53,22 @@ schedules events in time-stamp order for all LPs assigned to
 it. Events that are destined for a logical process on another
 PE (i.e. remote events) are sent as MPI messages. 
 
-For this assignment we decided to collect remote event data for each PE in the simulation. Running with 8 total PE's we collect the total number of MPI messages sent per PE at each instance of simulation time. The first dataset is generated with a simulation using the Dragonfly network interconnect model with uniform random traffic using minimal routing. The second dataset is generated using a Slim Fly network interconnect model simulation also using uniform random traffic and minimal routing. The data is extracted into a simple csv format with the following layout: PE\#, sim-time, remote-events. We started of collecting 1,000 points in time for each PE but the resulting streamgraphs looked terrible (very discrete and spiky instead of smooth and continuous) so we dropped the number of time samples down to 100 per PE for a total of 800 points per graph.
+For this assignment we decided to collect remote event data for each PE in the simulation. Running with 8 total PE's we collect the total number of MPI messages sent per PE at each instance of simulation time. The first dataset is generated with a simulation using the Dragonfly network interconnect model with uniform random traffic using minimal routing. The second dataset is generated using a Slim Fly network interconnect model simulation also using uniform random traffic and minimal routing. The data is extracted into a simple csv format with the following layout: PE\#, sim-time, remote-events. We started off collecting 1,000 points in time for each PE but the resulting streamgraphs looked terrible (very discrete and spiky instead of smooth and continuous) so we dropped the number of time samples down to 100 per PE for a total of 800 points in time per graph.
 
 \section{Bar Graph Visualization} \label{bar}
-
-
-\section{Stream Graph Visualization} \label{stream}
-Using the William Turman's Stream graph D3 implementation \cite{Stream}...
-
+In order to generate the stacked bar graphs, we decided to use Excel. Excel is very straightforward and has a simple interface with many options for color. Also, our data set was in the csv format so loading into Excel was very easy. The resulting stacked bar graphs are shown in Figure \ref{Bar}. Presenting the data in bar graph form leaves a lot to be desired. On the positive side, one can quickly glean the overall trend of all MPI sends for all PEs in each simulation but that is it. The separation and differences between the different PEs is very difficult to see which is a direct result of trying to smash so much data into bars in a small horizontal area. It forces the width of the bars to be very small. Also, as a result of the small bar widths, color isn't allowed to have a beneficial effect on the data visualization. One of the strong properties of Excel is selection of color schemes but unfortunately the bar graph cancels out the color capability.
 \begin{figure}[!ht]
      \centering
      \subfloat[][Slim Fly]{\epsfig{file=figures/slimfly-bar.png, height=3.5in, width=6.50in}\label{top}}\\
      \subfloat[][Dragonfly]{\epsfig{file=figures/dragonfly-bar.png, height=3.5in, width=6.50in}\label{bot}}
-     \caption{Visualizations of the Dragonfly and Slim Fly remote message simulation data sets showing the number of MPI messages being sent from each PE in the simulation over time. Both figures start with PE 1 ("SF1" or "DF1" in the legends) on the bottom of the stacked bars and are presented in order to the top of the bars finishing with PE 8 ("SF8" or "DF8" in the legends).}
-     \label{Area}
+     \caption{Visualizations of the Dragonfly and Slim Fly remote message simulation data sets showing the number of MPI messages being sent from each PE in the simulation over time. Both figures start with PE 1 ("SF1" or "DF1" in the legends) on the bottom of the stacked bars and the data for the following PEs is stacked on top, in order, and finishing with PE 8 ("SF8" or "DF8" in the legends) on top. Each bar along the x-axis represents a different point in the simulation time.}
+     \label{Bar}
 \end{figure}
+
+\section{Stream Graph Visualization} \label{stream}
+Using the William Turman's Stream graph D3 implementation \cite{Stream}...
+
+
 %
 %\begin{figure}[ht]
 %\centering
