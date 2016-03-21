@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{epsfig}
+%\usepackage{subfigure}
+\usepackage{times}
+\usepackage{xspace}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{array}
+\usepackage{subfig}
+\usepackage{multirow}
+\usepackage{dblfloatfix} 
+
+\setlength{\topmargin}{0.0in}     % top of paper to head (less one inch)
+\setlength{\headheight}{0in}      % height of the head
+\setlength{\headsep}{0in}         % head to the top of the body
+\setlength{\textheight}{9.0in}    % height of the body
+\setlength{\oddsidemargin}{-.25in} % left edge of paper to body (less one inch)
+\setlength{\evensidemargin}{0mm}  % ditto, even pages
+\setlength{\textwidth}{7.0in}     % width of body
+\setlength{\topskip}{0in}         % top of body to bottom of first line of text
+\setlength{\parindent}{1pc}       
+
+\begin{document}
+\thispagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Project Summary
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+{\Large\bf Assignment \#6: StreamGraphs}
+\vspace{3mm}
+\\Caitlin Ross \& Noah Wolfe
+\\03/21/2016
+\\*[3mm]
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Task Objects
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data Source (ROSS)}
+%Description of the data source and corresponding applications.
+In this assignment, we have decided to generate/collect data from our ROSS research projects. 
+ROSS is a massively parallel discrete-event simulator that
+can process billions of events per second \cite{Holder}, \cite{Bauer}. ROSS
+models are made up of a collection of logical processes (LPs).
+Each LP models a distinct component of the system. LPs
+interact with one another through events in the form of time-stamped messages. An MPI task is abstracted as a processor
+element (PE) in ROSS. Each PE owns a number of LPs and
+schedules events in time-stamp order for all LPs assigned to
+it. Events that are destined for a logical process on another
+PE (i.e. remote events) are sent as MPI messages. 
+
+For this assignment we decided to collect remote event data for each PE in the simulation. Running with 8 total PE's we collect the total number of MPI messages sent per PE at each instance of simulation time. The first dataset is generated with a simulation using the Dragonfly network interconnect model with uniform random traffic using minimal routing. The second dataset is generated using a Slim Fly network interconnect model simulation also using uniform random traffic and minimal routing. The data is extracted into a simple csv format with the following layout: PE\#, sim-time, remote-events. We started of collecting 1,000 points in time for each PE but the resulting streamgraphs looked terrible (very discrete and spiky instead of smooth and continuous) so we dropped the number of time samples down to 100 per PE for a total of 800 points per graph.
+
+\section{Bar Graph Visualization} \label{bar}
+
+
+\section{Stream Graph Visualization} \label{stream}
+Using the William Turman's Stream graph D3 implementation \cite{Stream}...
+
+%\begin{figure}[!ht]
+%     \centering
+%     \subfloat[][Overall View]{\epsfig{file=figures/area1.png, height=2.0in, width=3.00in}\label{left}}
+%     \subfloat[][Dense Section Zoomed View]{\epsfig{file=figures/area2.png, height=2.0in, width=4.50in}\label{right}}
+%     \caption{Visualizations of the ROSS data set showing the number of events computed in each section of the simulation over the length of the simulation. Sub-figure \ref{left} shows a global view of all metrics while sub-figure \ref{right} shows a view zoomed in on the dense region at the bottom of sub-figure \ref{left}.}
+%     \label{Area}
+%\end{figure}
+%
+%\begin{figure}[ht]
+%\centering
+%	\includegraphics[width=7in]{figures/batch.png}
+%\caption{Parallel Coordinates graph for runs with various batch values}
+%\label{fig:batch}
+%\end{figure}
+%\begin{figure}[ht]
+%\centering
+%	\includegraphics[width=7in]{figures/gvt.png}
+%\caption{Parallel Coordinates graph for runs with various gvt-interval values}
+%\label{fig:gvt}
+%\end{figure}
+
+\section{Bar vs Stream Graph Comparison}
+%Analyze the effectiveness of the bar graph vs. streamgraph in showing off the differences and similarities in the two datasets. How well do these plots allow the viewer to make accurate conclusions about the data?
+ 
+
+% Bibliography
+\bibliographystyle{abbrv}
+\bibliography{HW4}
+
+\end{document}
+
+
+%\begin{figure}[!ht]
+%     \centering
+%     \subfloat[][twopi]{\epsfig{file=figures/MMS7-3-17.png, height=2.2in, width=4.80in}\label{vis-100-1}}\\
+%     \subfloat[][dot]{\epsfig{file=figures/MMS7-3-12.png, height=2.0in, width=3.00in}\label{vis-100-2}}
+%     \subfloat[][circo]{\epsfig{file=figures/MMS7-3-circo.png, height=2.0in, width=3.0in}\label{vis-100-3}}\\
+%     \caption{Visualizations of the class social network data using a collection of Graphviz graph drawing programs. Red lines represent "before RPI" connections, blue represent "lived with" connections and black represent "Data Structures" connections. }
+%     \label{vc-occupancy}
+%\end{figure}
+
+%\begin{figure}[!h]
+%\centering
+%\epsfig{file=figures/storyboard.jpg, width=5.5in}
+%\caption{Storyboard showing the desired layout and interaction of the network visualization tool in D3.}
+%\label{good}
+%\end{figure}
