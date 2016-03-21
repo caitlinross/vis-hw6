@@ -61,12 +61,23 @@ In order to generate the stacked bar graphs, we decided to use Excel. Excel is v
      \centering
      \subfloat[][Slim Fly]{\epsfig{file=figures/slimfly-bar.png, height=3.5in, width=6.50in}\label{top}}\\
      \subfloat[][Dragonfly]{\epsfig{file=figures/dragonfly-bar.png, height=3.5in, width=6.50in}\label{bot}}
-     \caption{Visualizations of the Dragonfly and Slim Fly remote message simulation data sets showing the number of MPI messages being sent from each PE in the simulation over time. Both figures start with PE 1 ("SF1" or "DF1" in the legends) on the bottom of the stacked bars and the data for the following PEs is stacked on top, in order, and finishing with PE 8 ("SF8" or "DF8" in the legends) on top. Each bar along the x-axis represents a different point in the simulation time.}
+     \caption{Stacked bar chart visualizations of the Dragonfly and Slim Fly remote message simulation data sets showing the number of MPI messages being sent from each PE in the simulation over time. Both figures start with PE 1 ("SF1" or "DF1" in the legends) on the bottom of the stacked bars and the data for the following PEs is stacked on top, in order, and finishing with PE 8 ("SF8" or "DF8" in the legends) on top. Each bar along the x-axis represents a different point in the simulation time.}
      \label{Bar}
 \end{figure}
 
 \section{Stream Graph Visualization} \label{stream}
-Using the William Turman's Stream graph D3 implementation \cite{Stream}...
+
+\begin{figure}[!ht]
+     \centering
+     \subfloat[][Slim Fly]{\epsfig{file=figures/slimfly-sg.png, height=2.5in, width=6.50in}\label{top}}\\
+     \subfloat[][Dragonfly]{\epsfig{file=figures/dragonfly-sg.png, height=2.5in, width=6.50in}\label{bot}}
+     \caption{Stream graph visualizations of the Dragonfly and Slim Fly remote message simulation data sets showing the number of MPI messages being sent from each PE in the simulation over time. Both figures start with PE 1 (lightest blue) on the bottom of the stacked bars and the data for the following PEs is stacked on top, in order, and finishing with PE 8 (darkest blue) on top. The x-axis shows simulation time increasing from left to right.  The height of a layer (i.e., PE) corresponds to the number of remote events for that PE.  }
+     \label{sg}
+\end{figure}
+
+We used William Turman's Stream graph D3 implementation \cite{Stream} to create the stream graphs of our data.  This required very little modification to work.  We got our data into a similar format as the example, except that we use an integer to represent simulated time, instead of using a real date as the example does.  We had to make some Javascript modifications to appropriately handle the time information.  Then we were able to add both data sets to the same page.   The stream graphs of both the Slimfly and Dragonfly data are shown in Figure~\ref{sg}.  The colors used are from the ColorBrewer website~\cite{Colorbrewer}.
+
+The graphs are hosted at \url{https://caitlinross.github.io/vis/streamgraph.html}.  There is an interactive aspect that is not shown in the figures.  When hovering over a layer, several things occur.  The opacity of the other layers are decreased to make the layer selected stand out.  A vertical bar moves to where the mouse pointer is.  Finally, a tooltip appears that shows the PE id and the value for that PE at that point in time.
 
 
 %
@@ -85,8 +96,7 @@ Using the William Turman's Stream graph D3 implementation \cite{Stream}...
 
 \section{Bar vs Stream Graph Comparison}
 %Analyze the effectiveness of the bar graph vs. streamgraph in showing off the differences and similarities in the two datasets. How well do these plots allow the viewer to make accurate conclusions about the data?
- 
-
+ Overall, the stream graph visualizations are easier to read and see differences in the PEs; however, the labels on the y-axis don't make much sense in the stream graph, since the baseline is not set to 0.  The stacked bar chart makes it easier to see the number of remote events for all PEs for a given point in simulated time, but the stream graph better highlights the differences between PEs.  
 % Bibliography
 \bibliographystyle{abbrv}
 \bibliography{HW4}
