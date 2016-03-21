@@ -8,6 +8,12 @@
 
     .chart { 
     background: #fff;
+    position: relative;
+    }
+
+    .chart2 { 
+    background: #fff;
+    position: relative;
     }
 
     p {
@@ -40,17 +46,17 @@
 
     <script>
         // code adapted from http://bl.ocks.org/WillTurman/4631136
-        chart("slimfly.csv", "red", ".chart");
-        chart("dragonfly.csv", "red", ".chart2");
+        chart("slimfly.csv", "blue", ".chart", "remove");
+        chart("dragonfly.csv", "blue", ".chart2", "remove2");
 
         var datearray = [];
         var colorrange = [];
 
 
-        function chart(csvpath, color, divname) {
+        function chart(csvpath, color, divname, rmname) {
 
             if (color == "blue") {
-                colorrange = ['#f7fbff','#deebf7','#c6dbef','#9ecae1','#6baed6','#4292c6','#2171b5','#084594'];
+                colorrange = ['#deebf7','#c6dbef','#9ecae1','#6baed6','#4292c6','#2171b5','#08519c','#08306b'];
             }
             else if (color == "pink") {
                 colorrange = ['#f7f4f9','#e7e1ef','#d4b9da','#c994c7','#df65b0','#e7298a','#ce1256','#91003f'];
@@ -69,13 +75,14 @@
             var width = document.body.clientWidth - margin.left - margin.right;
             var height = 400 - margin.top - margin.bottom;
 
-            var tooltip = d3.select("body")
+
+            var tooltip = d3.select(divname)
                 .append("div")
-                .attr("class", "remove")
+                .attr("class", rmname)
                 .style("position", "absolute")
                 .style("z-index", "20")
                 .style("visibility", "hidden")
-                .style("top", "30px")
+                .style("top", "10px")
                 .style("left", "55px");
 
             var x = d3.scale.linear()
@@ -175,6 +182,7 @@
                         mousedate = datearray.indexOf(invertedx);
                         pro = d.values[mousedate].value;
 
+                        console.log(this);
                         d3.select(this)
                             .classed("hover", true)
                             .attr("stroke", strokecolor)
@@ -194,7 +202,7 @@
 
                 var vertical = d3.select(divname)
                     .append("div")
-                    .attr("class", "remove")
+                    .attr("class", rmname)
                     .style("position", "absolute")
                     .style("z-index", "19")
                     .style("width", "1px")
@@ -202,7 +210,7 @@
                     .style("top", "10px")
                     .style("bottom", "30px")
                     .style("left", "0px")
-                    .style("background", "#fff");
+                    .style("background", "#000");
 
                 d3.select(divname)
                     .on("mousemove", function(){  
