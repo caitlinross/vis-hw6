@@ -69,9 +69,9 @@ In order to generate the stacked bar graphs, we decided to use Excel. Excel is v
 
 \begin{figure}[!ht]
      \centering
-     \subfloat[][Slim Fly]{\epsfig{file=figures/slimfly-sg.png, height=2.5in, width=6.50in}\label{top}}\\
-     \subfloat[][Dragonfly]{\epsfig{file=figures/dragonfly-sg.png, height=2.5in, width=6.50in}\label{bot}}
-     \caption{Stream graph visualizations of the Dragonfly and Slim Fly remote message simulation data sets showing the number of MPI messages being sent from each PE in the simulation over time. Both figures start with PE 1 (lightest blue) on the bottom of the stacked bars and the data for the following PEs is stacked on top, in order, and finishing with PE 8 (darkest blue) on top. The x-axis shows simulation time increasing from left to right.  The height of a layer (i.e., PE) corresponds to the number of remote events for that PE.  }
+     \subfloat[][Slim Fly]{\epsfig{file=figures/slimfly-sg.png, height=2.5in, width=6.50in}\label{top-stream}}\\
+     \subfloat[][Dragonfly]{\epsfig{file=figures/dragonfly-sg.png, height=2.5in, width=6.50in}\label{bot-stream}}
+     \caption{Stream graph visualizations of the Dragonfly and Slim Fly remote message simulation data sets showing the number of MPI messages being sent from each PE in the simulation over time. Both figures start with PE 1 (lightest blue) on the bottom with the following PEs layered in order on top, and finishing with PE 8 (darkest blue) on top. The x-axis shows simulation time increasing from left to right.  The vertical height of a layer (i.e., PE) corresponds to the number of remote events for that PE.}
      \label{sg}
 \end{figure}
 
@@ -80,23 +80,10 @@ We used William Turman's Stream graph D3 implementation \cite{Stream} to create 
 The graphs are hosted at \url{https://caitlinross.github.io/vis/streamgraph.html}.  There is an interactive aspect that is not shown in the figures.  When hovering over a layer, several things occur.  The opacity of the other layers are decreased to make the layer selected stand out.  A vertical bar moves to where the mouse pointer is.  Finally, a tooltip appears that shows the PE id and the value for that PE at that point in time.
 
 
-%
-%\begin{figure}[ht]
-%\centering
-%	\includegraphics[width=7in]{figures/batch.png}
-%\caption{Parallel Coordinates graph for runs with various batch values}
-%\label{fig:batch}
-%\end{figure}
-%\begin{figure}[ht]
-%\centering
-%	\includegraphics[width=7in]{figures/gvt.png}
-%\caption{Parallel Coordinates graph for runs with various gvt-interval values}
-%\label{fig:gvt}
-%\end{figure}
-
 \section{Bar vs Stream Graph Comparison}
 %Analyze the effectiveness of the bar graph vs. streamgraph in showing off the differences and similarities in the two datasets. How well do these plots allow the viewer to make accurate conclusions about the data?
- Overall, the stream graph visualizations are easier to read and see differences in the PEs; however, the labels on the y-axis don't make much sense in the stream graph, since the baseline is not set to 0.  The stacked bar chart makes it easier to see the number of remote events for all PEs for a given point in simulated time, but the stream graph better highlights the differences between PEs.  
+Overall, we think it is clear the stream graph is a much better choice for large time-series data sets as compared with stacked bar graphs. Both graph approaches make observation and analysis of global/general features quick and easy. After a quick glance at both sets of visualizations, it is clear the Slim Fly network has a much more consistent MPI send rate while the Dragonfly is more sporadic. However, the similarities between the bar graphs and stream graphs end there. On one hand, the stream graph visualizations perform better in representing the differences in the PEs, clearly showing the separation of the PE data by colors and making it easy to follow along the x-axis. With the bar charts, it's nearly impossible to differentiate between the different PEs and the thin bars makes it impossible for any coloring to help the matter as there is no space to color. On the other hand, the labels on the y-axis don't make much sense in the stream graph, since the baseline is not set to 0. The stacked bar graph chart has a very clear y-axis and thus makes it easier to see the number of remote events for all PEs for a given point in simulated time. These numbers can of course be calculated from the stream graph y-axis with some extra effort. In the end, the stream graph does a much better job of providing detailed analysis when dealing with large amounts of data as shown in this report. The ability to distinguish and follow trends in the data at the global simulation and local PE levels makes the stream graph the preferred choice.
+ 
 % Bibliography
 \bibliographystyle{abbrv}
 \bibliography{HW4}
